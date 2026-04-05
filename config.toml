@@ -1,0 +1,22 @@
+baseURL = "http://localhost:1313/"
+languageCode = "en-us"
+title = "My Blog"
+theme = "ananke"
+
+[[menu.main]]
+name = "About"
+url = "/about/"
+weight = 1
+
+[[menu.main]]
+name = "Music"
+url = "/music/"
+weight = 2
+
+[[menu.main]]
+name = "Physics Blog"
+url = "/physicsblog/"
+weight = 3
+
+[params]
+mainSections = ["physicsblog", "posts"]

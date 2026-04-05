@@ -1,0 +1,31 @@
+{{ define "main" }}
+
+<article class="cf ph3 ph5-l pv3 pv4-l f4 center">
+  <h1 class="f2 fw8 mb2">{{ .Title }}</h1>
+  <p class="f5 gray mb4">{{ .Description }}</p>
+  <div class="mw7 center f5 lh-copy mb4">
+    {{ .Content }}
+  </div>
+</article>
+
+<!-- Episodes list -->
+<section class="cf ph3 ph5-l pv4 center mw8">
+  {{ $episodes := where .Site.RegularPages "Section" "physicsblog" }}
+  {{ if $episodes }}
+    <div class="cf">
+      {{ range $episodes }}
+        {{ if ne .File.BaseFileName "_index" }}
+          <div class="mb3 pb3 bb b--light-gray">
+            <h2 class="f3 fw7 mt0 mb0">
+              <a href="{{ .Permalink }}" class="link blue hover-navy">{{ .Title }}</a>
+            </h2>
+          </div>
+        {{ end }}
+      {{ end }}
+    </div>
+  {{ else }}
+    <p class="f5 gray tc">No episodes yet. Stay tuned!</p>
+  {{ end }}
+</section>
+
+{{ end }}

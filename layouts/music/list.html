@@ -1,0 +1,33 @@
+{{ define "main" }}
+<article class="cf ph3 ph5-l pv4 pv5-l center">
+  <h1 class="f1 fw8 mt0 mb3">{{ .Title }}</h1>
+
+  <!-- Soundcloud Section -->
+  <div class="mw7 center mb5 pb4 bb b--light-gray">
+    <h2 class="f3 fw7 mb3">🎵 Listen on Soundcloud</h2>
+
+    <!-- Embedded SoundCloud player -->
+    <iframe
+      width="100%"
+      height="350"
+      scrolling="no"
+      frameborder="no"
+      allow="autoplay"
+      src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/alexander-chatrchyan&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
+    </iframe>
+
+    <!-- Optional: keep a text fallback link below -->
+    <p class="f6 gray lh-copy mt2">
+      Can't see the player?
+      <a href="https://soundcloud.com/alexander-chatrchyan" target="_blank" rel="noopener noreferrer" class="link blue dim">
+        Open on SoundCloud →
+      </a>
+    </p>
+  </div>
+
+  <!-- Main content -->
+  <div class="mw7 center f5 lh-copy">
+    {{ .Content }}
+  </div>
+</article>
+{{ end }}

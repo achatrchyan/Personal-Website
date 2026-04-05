@@ -1,0 +1,33 @@
+{{ define "main" }}
+
+<article class="cf ph3 ph5-l pv3 pv4-l lh-copy nested-links">
+  <!-- Episode header -->
+  <header class="mb4 pb4 bb b--light-gray">
+    <h1 class="f2 fw8 mt0 mb2">{{ .Title }}</h1>
+    <p class="f5 gray mb0">📅 {{ .Date.Format "January 2, 2006" }}</p>
+  </header>
+
+  <!-- Episode content -->
+  <div class="f5 measure-wide lh-copy center">
+    {{ .Content }}
+  </div>
+
+  <!-- Navigation -->
+  <nav class="cf mt5 pt4 bt b--light-gray">
+    <div class="fl w-50">
+      {{ with .PrevInSection }}
+        <a href="{{ .Permalink }}" class="link blue hover-navy fw6">← Previous</a>
+      {{ end }}
+    </div>
+    <div class="fl w-50 tr">
+      {{ with .NextInSection }}
+        <a href="{{ .Permalink }}" class="link blue hover-navy fw6">Next →</a>
+      {{ end }}
+    </div>
+    <div class="fl w-100 mt3 tc">
+      <a href="/physicsblog/" class="link dim blue fw6">← Back to episodes</a>
+    </div>
+  </nav>
+</article>
+
+{{ end }}
