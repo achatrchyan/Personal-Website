@@ -9,6 +9,7 @@ description: "Exploring the fundamental properties of light"
 In this episode, we explore one of the most fascinating phenomena in physics: light.
 
 ### Key Topics
+
 - Wave-particle duality
 - also other stuff
 - The speed of light
@@ -19,16 +20,27 @@ Light is all around us. From the moment we open our eyes, we are receiving infor
 
 ### What do we see in the sky?
 
-When we look in the sky, we several objects. The brightest is the sun. We can sometimes see the moon, and in the night, when the sky is clear we can see some planets and dozens of stars.
+When we look in the sky, we see several objects. The brightest is the sun. We can sometimes see the moon, and in the night, when the sky is clear we can see some planets and dozens of stars.
 
-![alt text](./daynight.png)
+<!--![alt text](./daynight.png) -->
+
+<img src="daynight.png" width="50%">
 
 ### What does it mean to see something
 
-To see something means that light is emitted from that object 
+To see something means that light is emitted from that object travels through space and reaches our eyes.
 
-![alt text](image.png)
-<img src="image.png" width="300">
+<img src="image.png" width="50%">
+
+But was exactly is light?
+
+Generally speaking, it is a form of energy, that can propagate through space (even through empty space = vacuum).
+
+More concretely it is a type of electromagnetic radiation, a form of electromagnetic field that propagates in the form of a wave. Both the electromagnetic field and electromagnetic waves interact in a very specific way with electrically charged matter, including particles such as electrons, protons (but not neutrons).
+
+### Analogy: water surface waves
+
+Waves are common in nature and have universal features. Let us for a moment focus on a more familiar example, water surface waves. Here you can see a pair of ducks perturbing the water, then these perturbations propagate outwards as waves
 
 ### What Makes Light Special?
 
