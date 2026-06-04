@@ -1,8 +1,5 @@
 ---
-title: "About Me"
-description: "About page"
+title: "Research"
 ---
 
-Welcome to my corner of the web. This is where I share my thoughts, projects, and passions.
-
-More content coming soon...
+I'm interested in the messy, out-of-equilibrium physics that governs the universe at its most extreme — the very early universe, the very late universe, and everything in between.

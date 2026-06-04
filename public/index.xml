@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>My Blog</title>
-    <link>http://localhost:1313/</link>
-    <description>Recent content on My Blog</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 15 Jan 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Episode 1: Light as the Messenger</title>
-      <link>http://localhost:1313/physicsblog/episode_1/</link>
-      <pubDate>Mon, 15 Jan 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/physicsblog/episode_1/</guid>
-      <description>&lt;h2 id=&#34;episode-1-light-as-the-messenger&#34;&gt;Episode 1: Light as the Messenger&lt;/h2&gt;&#xA;&lt;p&gt;In this episode, we explore one of the most fascinating phenomena in physics: light.&lt;/p&gt;&#xA;&lt;h3 id=&#34;key-topics&#34;&gt;Key Topics&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Wave-particle duality&lt;/li&gt;&#xA;&lt;li&gt;also other stuff&lt;/li&gt;&#xA;&lt;li&gt;The speed of light&lt;/li&gt;&#xA;&lt;li&gt;Photons and energy&lt;/li&gt;&#xA;&lt;li&gt;How light carries information&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Light is all around us. From the moment we open our eyes, we are receiving information transmitted by light traveling from distant sources.&lt;/p&gt;&#xA;&lt;h3 id=&#34;what-do-we-see-in-the-sky&#34;&gt;What do we see in the sky?&lt;/h3&gt;&#xA;&lt;p&gt;When we look in the sky, we see several objects. The brightest is the sun. We can sometimes see the moon, and in the night, when the sky is clear we can see some planets and dozens of stars.&lt;/p&gt;</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Home</title>
+		<link>http://localhost:1313/</link>
+		<description>Recent content on Home</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Mon, 15 Jan 2024 00:00:00 +0000</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Episode 1: Light as the Messenger</title>
+				<link>http://localhost:1313/physicsblog/episode_1/</link>
+				<pubDate>Mon, 15 Jan 2024 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/physicsblog/episode_1/</guid>
+				<description>&lt;h2 id=&#34;episode-1-light-as-the-messenger&#34;&gt;Episode 1: Light as the Messenger&lt;/h2&gt;&#xA;&lt;p&gt;In this episode, we explore one of the most fascinating phenomena in physics: light.&lt;/p&gt;&#xA;&lt;h3 id=&#34;key-topics&#34;&gt;Key Topics&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Wave-particle duality&lt;/li&gt;&#xA;&lt;li&gt;also other stuff&lt;/li&gt;&#xA;&lt;li&gt;The speed of light&lt;/li&gt;&#xA;&lt;li&gt;Photons and energy&lt;/li&gt;&#xA;&lt;li&gt;How light carries information&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Light is all around us. From the moment we open our eyes, we are receiving information transmitted by light traveling from distant sources.&lt;/p&gt;&#xA;&lt;h3 id=&#34;what-do-we-see-in-the-sky&#34;&gt;What do we see in the sky?&lt;/h3&gt;&#xA;&lt;p&gt;When we look in the sky, we see several objects. The brightest is the sun. We can sometimes see the moon, and in the night, when the sky is clear we can see some planets and dozens of stars.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Բլոգ</title>
+				<link>http://localhost:1313/physicsblog/_index.hy/</link>
+				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/physicsblog/_index.hy/</guid>
+				<description>&lt;p&gt;Հայերեն թարգմանություն - Տեղադրեք ձեր բլոգի բաժնի հայերեն տեքստը այստեղ:&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

@@ -1,10 +1,10 @@
 baseURL = "http://localhost:1313/"
 languageCode = "en-us"
-title = "My Blog"
+title = "Home"
 theme = "ananke"
 
 [[menu.main]]
-name = "About"
+name = "Research"
 url = "/about/"
 weight = 1
 
@@ -14,9 +14,26 @@ url = "/music/"
 weight = 2
 
 [[menu.main]]
-name = "Physics Blog"
-url = "/physicsblog/"
+name = "Birdwatching"
+url = "/birds/"
 weight = 3
+
+[[menu.main]]
+name = "Blog"
+url = "/physicsblog/"
+weight = 4
 
 [params]
 mainSections = ["physicsblog", "posts"]
+
+[params.ananke.social.follow]
+networks = ["linkedin", "instagram", "github"]
+
+[params.ananke.social.networks.linkedin]
+profile = "https://linkedin.com/in/aleksandr-chatrchyan"
+
+[params.ananke.social.networks.instagram]
+profile = "https://www.instagram.com/xchtrchyn/"
+
+[params.ananke.social.networks.github]
+profile = "https://github.com/achatrchyan/"
