@@ -41,6 +41,13 @@ jobs:
             "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb"
           sudo dpkg -i "${{ runner.temp }}/hugo.deb"
 
+      # The ananke theme transpiles SCSS with `css.Sass`. Hugo no longer carries
+      # its own libsass, so it shells out to Dart Sass, which the .deb does not
+      # bundle. (Locally this is invisible: the Hugo *snap* ships `sass` inside
+      # it, which is why `hugo` works on your machine but not on a clean runner.)
+      - name: Install Dart Sass
+        run: sudo snap install dart-sass
+
       - name: Check out the repository
         uses: actions/checkout@v4
         with:
