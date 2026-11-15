@@ -1,0 +1,78 @@
+name: Deploy site to GitHub Pages
+
+# Builds the Hugo site on every push to master and publishes it to GitHub Pages.
+# `public/` is gitignored, so this workflow is the only thing that produces the
+# live site — there is nothing prebuilt in the repository.
+#
+# One-time setup in the repo: Settings → Pages → Build and deployment →
+# Source: "GitHub Actions". Nothing else to configure; the base URL is taken
+# from Pages itself (see the build step), so this works whether the site lives
+# at <user>.github.io or at <user>.github.io/<repo>/.
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch: # lets you re-run it by hand from the Actions tab
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Let a running deploy finish rather than cancelling it half-published.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      # The ananke theme compiles SCSS, so this must be the *extended* build.
+      HUGO_VERSION: 0.170.0
+    steps:
+      - name: Install Hugo (extended)
+        run: |
+          wget -O "${{ runner.temp }}/hugo.deb" \
+            "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb"
+          sudo dpkg -i "${{ runner.temp }}/hugo.deb"
+
+      - name: Check out the repository
+        uses: actions/checkout@v4
+        with:
+          # The theme is a git submodule; without this the build has no theme.
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Build
+        env:
+          HUGO_ENVIRONMENT: production
+          HUGO_ENV: production
+        # Taking baseURL from the Pages output means config.toml can keep its
+        # localhost value for local development, and a move between a user site
+        # and a project site needs no edit here.
+        run: hugo --gc --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
+
+      - name: Upload the built site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

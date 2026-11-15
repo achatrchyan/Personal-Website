@@ -1,9 +1,8 @@
 ---
 title: "Music"
+description: "Piano, composition and improvisation — original tracks and sketches, on SoundCloud."
 ---
 
-A collection of my musical explorations and projects. I like to play compose and improvise. I use Cubase, as well as various libraries.
+I like to play piano, compose and improvise. 
 
-For instance, check out my recent track, for which I used Berlin Symphonic Orchestra, Pianoteq and Norrlands trumpet.
-
-More content coming soon...
+You can find a collection of my musical explorations and projects on SoundCloud.

@@ -1,16 +1,30 @@
 {{ define "main" }}
 
-  <!-- Profile Photo -->
-  <div class="tc">
-    <img src="/about/pic.jpg" alt="Profile" class="br-100 w-20 h-20 object-cover ba b--light-gray shadow-1">
-  </div>
+  <!-- Profile Photo. Pulled as a page resource of /research/ rather than a hardcoded
+       path, so it survives renames, and resized by Hugo — the original is 2552px. -->
+  {{ with site.GetPage "/research" }}
+    {{ with .Resources.GetMatch "pic.jpg" }}
+      {{ $avatar := .Fill "320x320 Center" }}
+      <div class="tc">
+        {{/* Sized in CSS with aspect-ratio:1 + object-fit:cover so it is always a
+             true circle and can never stretch, whatever the window or source image.
+             Note: Tachyons has no `h-20` or `object-cover` — those are Tailwind names
+             and silently do nothing here, so don't reach for them. */}}
+        <img
+          src="{{ $avatar.RelPermalink }}"
+          width="{{ $avatar.Width }}"
+          height="{{ $avatar.Height }}"
+          alt="Aleksandr Chatrchyan"
+          class="br-100 ba b--light-gray shadow-1"
+          style="width:min(180px,45vw);height:auto;aspect-ratio:1;object-fit:cover">
+      </div>
+    {{ end }}
+  {{ end }}
 
   <!-- Welcome section -->
   <article class="cf ph3 ph5-l pv2 f4 tc center measure-wide lh-copy mid-gray">
     <h1 class="f1 fw8 mb2">Welcome</h1>
-    <p class="f5 lh-copy">My name is Aleksandr Chatrchyan. I am a postdoctoral researcher at the Oskar Klein Centre, Stockholm University. </p>
-      
-    <p class="f5 lh-copy">This is where I share my thoughts, projects, and passions. </p>
+    <p class="f5 lh-copy">My name is Aleksandr Chatrchyan. I am a postdoctoral researcher at the CERN theory department. </p>
   </article>
 
 {{ end }}

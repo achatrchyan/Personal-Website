@@ -1,0 +1,102 @@
+/* ---------------------------------------------------------------------------
+   Dark theme.
+
+   Built around #2f3e46, which is the darkest shade of a well-known five-colour
+   palette — so the text, border and link colours below are its natural
+   companions rather than something invented to sit next to it:
+
+     #151e22  near-black      header strip (same hue, much darker)
+     #2f3e46  dark slate      page background
+     #354f52  dark slate +1   raised surfaces (cards)
+     #52796f  feldgrau        borders and rules
+     #84a98c  sage            links and accents
+     #cad2c5  ash             body text
+
+   The theme is Tachyons-based, so the approach here is to re-point the handful
+   of Tachyons colour utilities the site actually uses, rather than rewriting
+   the markup. Change the five values below and the whole site follows.
+   --------------------------------------------------------------------------- */
+
+:root {
+  --bg: #2f3e46;
+  --surface: #354f52;
+  /* Header strip. Near-black, but tinted with the same blue-green hue as the
+     rest of the palette so it reads as part of the set rather than a black bar.
+     Go darker with #0e1417, lighter with #1d272c. */
+  --header: #151e22;
+  --border: #52796f;
+  --accent: #84a98c;
+  --accent-hover: #cad2c5;
+  --text: #cad2c5;
+  --muted: #9fb3a8;
+}
+
+/* Paint the html element too, so over-scroll past the page doesn't flash white */
+html { background-color: var(--bg); }
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+/* --- Text ---------------------------------------------------------------- */
+
+.near-black, .dark-gray, .mid-gray, .black, .light-silver { color: var(--text); }
+.gray, .silver, .moon-gray { color: var(--muted); }
+
+h1, h2, h3, h4, h5, h6 { color: var(--text); }
+
+/* --- Surfaces ------------------------------------------------------------ */
+
+.bg-white, .bg-near-white { background-color: var(--surface); }
+
+/* Header strip. Set via `background_color_class` in config.toml. */
+.bg-site-header { background-color: var(--header); }
+
+/* --- Borders ------------------------------------------------------------- */
+
+.b--light-gray, .b--moon-gray, .b--black-10, .b--black-20 { border-color: var(--border); }
+
+/* --- Links --------------------------------------------------------------- */
+
+a, .blue, .link.blue { color: var(--accent); }
+
+a:hover, a:focus,
+.hover-navy:hover, .hover-navy:focus { color: var(--accent-hover); }
+
+/* The theme hardcodes a light-mode blue for links inside prose */
+.nested-links a { color: var(--accent); }
+.nested-links a:hover, .nested-links a:focus { color: var(--accent-hover); }
+
+/* Nav and header sit on --surface, so keep them bright */
+.white-90, .white-80 { color: var(--text); }
+.hover-white:hover, .hover-white:focus { color: #fff; }
+
+/* --- Social icons -------------------------------------------------------- */
+/* They inherit `fill: currentColor`; the theme's hover goes darker, which is
+   backwards on a dark background. */
+
+.ananke-socials a { color: var(--muted); }
+.ananke-socials a:hover, .ananke-socials a:focus { color: var(--accent); }
+
+/* --- Odds and ends ------------------------------------------------------- */
+
+/* A black drop shadow is invisible here; use a soft dark halo instead */
+.shadow-1 { box-shadow: 0 0 1rem rgba(0, 0, 0, 0.35); }
+
+code {
+  background-color: rgba(0, 0, 0, 0.25);
+  color: var(--text);
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+}
+
+hr { border-color: var(--border); }
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* Tell the browser this is a dark page, so form controls and scrollbars match */
+:root { color-scheme: dark; }

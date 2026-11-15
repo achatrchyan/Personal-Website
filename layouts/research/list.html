@@ -1,0 +1,126 @@
+{{ define "main" }}
+
+<article class="cf ph3 ph5-l pv4 pv5-l center">
+
+  <!-- Intro -->
+  <div class="mw7 center f5 lh-copy nested-links">
+    {{ .Content }}
+  </div>
+
+  <!-- Profile links -->
+  {{ with .Params.profiles }}
+    {{/* Let the cards share the row evenly however many there are */}}
+    {{ $col := "w-third-ns" }}
+    {{ if eq (len .) 1 }}{{ $col = "w-100" }}{{ else if eq (len .) 2 }}{{ $col = "w-50-ns" }}{{ end }}
+    <p class="mw7 center f6 gray tc mt4 mb0 lh-copy">
+      My papers can be found on
+    </p>
+    <div class="mw7 center mt2 flex flex-wrap nl2 nr2">
+      {{ range . }}
+        <div class="pa2 w-100 {{ $col }}">
+          <a href="{{ .url }}" target="_blank" rel="noopener noreferrer"
+             class="db pa3 br2 ba b--light-gray bg-white link dim near-black tc">
+            <span class="db f5 fw6">{{ .label }}</span>
+            {{ with .note }}<span class="db f6 gray mt1 lh-copy">{{ . }}</span>{{ end }}
+          </a>
+        </div>
+      {{ end }}
+    </div>
+  {{ end }}
+
+  <!-- Research themes -->
+  {{ with .Params.themes }}
+    <section class="mw7 center mt5 pt4 bt b--light-gray">
+      <h2 class="f3 f2-ns fw7 mb4 tc">Research themes</h2>
+
+      {{ range . }}
+        <div class="mb5">
+          <h3 class="f4 f3-ns fw7 mb2">{{ .title }}</h3>
+
+          {{ with .blurb }}
+            <p class="f5 lh-copy mt0">{{ . }}</p>
+          {{ end }}
+
+          {{/* figure: a filename renders the image; "" renders a placeholder box;
+               omitting the key entirely renders nothing. */}}
+          {{ if collections.IsSet . "figure" }}
+            {{ $img := "" }}
+            {{ $caption := .figure_caption | compare.Default "Figure" }}
+            {{/* figure_width caps how wide the figure draws, as a share of the text
+                 column. Square figures want ~55-65%, wide strips look right at 100%. */}}
+            {{ $width := .figure_width | compare.Default "100%" }}
+            {{ with .figure }}{{ $img = $.Resources.GetMatch . }}{{ end }}
+            <figure class="ma0 mv3 center" style="max-width:{{ $width }}">
+              {{ with $img }}
+                {{ if strings.HasSuffix (strings.ToLower .Name) ".svg" }}
+                  {{/* Vector: Hugo can't (and needn't) process it — the browser
+                       scales it losslessly, so hand it over untouched. */}}
+                  <img src="{{ .RelPermalink }}" alt="{{ $caption }}" loading="lazy"
+                       class="db w-100 h-auto br2">
+                {{ else }}
+                  {{/* Re-encode as WebP, and downscale only if oversized (scaling
+                       up just blurs and inflates). WebP matters here: the bubble
+                       figure is a ~1 MB PNG of noisy simulation output, which PNG
+                       compresses badly — WebP takes it to roughly a sixth of that
+                       with no visible change. Sources stay PNG in content/. */}}
+                  {{ $w := .Width }}
+                  {{ if gt $w 1400 }}{{ $w = 1400 }}{{ end }}
+                  {{ $fig := .Resize (printf "%dx webp q90" $w) }}
+                  <img src="{{ $fig.RelPermalink }}" width="{{ $fig.Width }}" height="{{ $fig.Height }}"
+                       alt="{{ $caption }}" loading="lazy"
+                       class="db w-100 h-auto br2">
+                {{ end }}
+              {{ else }}
+                <div class="pv5 ph3 tc f6 gray br2 ba b--dashed b--moon-gray">
+                  {{ with .figure }}
+                    Figure <code>{{ . }}</code> not found — drop it into <code>content/research/</code>
+                  {{ else }}
+                    Figure placeholder — set <code>figure:</code> for this theme in <code>_index.md</code>
+                  {{ end }}
+                </div>
+              {{ end }}
+              {{ with .figure_caption }}
+                <figcaption class="f6 gray mt2 lh-copy">{{ . }}</figcaption>
+              {{ end }}
+            </figure>
+          {{ end }}
+
+          {{ with .papers }}
+            <ul class="list pl0 mt3">
+              {{ range . }}
+                <li class="mb2 lh-copy">
+                  <a href="https://arxiv.org/abs/{{ .arxiv }}" target="_blank" rel="noopener noreferrer"
+                     class="f5 link blue hover-navy">{{ .title }}</a>
+                  <span class="db f6 gray">
+                    {{ with .ref }}{{ . }} &middot; {{ end }}arXiv:{{ .arxiv }}
+                  </span>
+                </li>
+              {{ end }}
+            </ul>
+          {{ end }}
+        </div>
+      {{ end }}
+
+    </section>
+  {{ end }}
+
+  <!-- Positions -->
+  {{ with .Params.positions }}
+    <section class="mw7 center mt5 pt4 bt b--light-gray">
+      <h2 class="f3 f2-ns fw7 mb4 tc">Positions</h2>
+      <dl class="ma0">
+        {{ range . }}
+          <div class="cf mb3">
+            <dt class="fl w-100 w-30-ns f6 gray pr3 lh-copy">{{ .years }}</dt>
+            <dd class="fl w-100 w-70-ns ml0 f5 lh-copy">
+              <span class="fw6">{{ .role }}</span>{{ with .place }}, {{ . }}{{ end }}
+            </dd>
+          </div>
+        {{ end }}
+      </dl>
+    </section>
+  {{ end }}
+
+</article>
+
+{{ end }}

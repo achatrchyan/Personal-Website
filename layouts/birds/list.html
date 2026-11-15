@@ -1,0 +1,88 @@
+{{ define "main" }}
+
+<article class="cf ph3 ph5-l pv4 pv5-l center">
+
+  <!-- Intro -->
+  <div class="mw7 center f5 lh-copy nested-links">
+    {{ .Content }}
+  </div>
+
+  <!-- YouTube player -->
+  {{ with .Params.youtube }}
+    <section class="mw7 center mt5 pt4 bt b--light-gray">
+      <h2 class="f3 fw7 mb3 tc">🎬 Watch Bird Videos</h2>
+
+      {{/* Prefer a real playlist (PL...) if one is set, since it updates itself.
+           Otherwise start on the first video id and queue the rest. Channel
+           "uploads" playlists (UU...) are deliberately not used — YouTube
+           refuses to embed them. */}}
+      {{ $src := "" }}
+      {{ with .playlist_id }}
+        {{ $src = printf "https://www.youtube-nocookie.com/embed/videoseries?list=%s" . }}
+      {{ else }}
+        {{ with .videos }}
+          {{ $src = printf "https://www.youtube-nocookie.com/embed/%s" (index . 0) }}
+          {{ with collections.After 1 . }}
+            {{ $src = printf "%s?playlist=%s" $src (collections.Delimit . ",") }}
+          {{ end }}
+        {{ end }}
+      {{ end }}
+
+      {{ with $src }}
+        {{/* mw6 is exactly mw7 / 1.5, so the player sits a third narrower than the text */}}
+        <div class="mw6 center">
+          <iframe
+            src="{{ . }}"
+            title="Bird videos from {{ $.Params.youtube.handle }}"
+            style="width:100%;aspect-ratio:16/9;border:0"
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+      {{ end }}
+
+      <p class="f6 gray lh-copy mt2 tc">
+        {{ with $src }}Can't see the player? {{ end }}
+        <a href="{{ .url }}" target="_blank" rel="noopener noreferrer" class="link blue dim">
+          Open {{ .handle }} on YouTube →
+        </a>
+      </p>
+    </section>
+  {{ end }}
+
+  <!-- Photo gallery -->
+  {{ with .Params.photos }}
+    <section class="mw8 center mt5 pt4 bt b--light-gray">
+      <h2 class="f3 fw7 mb3 tc">📷 A few of my photos</h2>
+      <div class="flex flex-wrap nl2 nr2">
+        {{ range . }}
+          {{ $img := $.Resources.GetMatch .file }}
+          {{ if $img }}
+            {{ $thumb := $img.Fill "600x450 Center" }}
+            {{ $caption := .name | compare.Default "" }}
+            <figure class="ma0 pa2 w-100 w-50-m w-third-l">
+              <a href="{{ $img.RelPermalink }}" target="_blank" rel="noopener noreferrer" class="db">
+                <img
+                  src="{{ $thumb.RelPermalink }}"
+                  width="{{ $thumb.Width }}"
+                  height="{{ $thumb.Height }}"
+                  alt="{{ $caption | compare.Default .file }}"
+                  loading="lazy"
+                  class="db w-100 h-auto br2 ba b--light-gray">
+              </a>
+              {{ with $caption }}
+                <figcaption class="f6 gray mt2 lh-copy">{{ . }}</figcaption>
+              {{ end }}
+            </figure>
+          {{ else }}
+            {{ warnf "birds gallery: no image named %q in content/birds/" .file }}
+          {{ end }}
+        {{ end }}
+      </div>
+    </section>
+  {{ end }}
+
+</article>
+
+{{ end }}

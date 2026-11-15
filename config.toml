@@ -1,11 +1,20 @@
 baseURL = "http://localhost:1313/"
-languageCode = "en-us"
+locale = "en-us"
 title = "Home"
 theme = "ananke"
 
+# No tags or categories are used, so don't publish the empty /tags/ and
+# /categories/ pages that Hugo would otherwise generate.
+disableKinds = ["taxonomy", "term"]
+
+# Allow raw HTML in markdown — the physicsblog posts use <img> and <iframe>,
+# which Goldmark otherwise strips silently.
+[markup.goldmark.renderer]
+unsafe = true
+
 [[menu.main]]
 name = "Research"
-url = "/about/"
+url = "/research/"
 weight = 1
 
 [[menu.main]]
@@ -18,13 +27,23 @@ name = "Birdwatching"
 url = "/birds/"
 weight = 3
 
-[[menu.main]]
-name = "Blog"
-url = "/physicsblog/"
-weight = 4
+# Blog is hidden until it's ready. The content stays in content/physicsblog/
+# (marked draft), so `hugo server -D` still shows it while you work on it.
+# Restore this block to publish it:
+#   [[menu.main]]
+#   name = "Blog"
+#   url = "/physicsblog/"
+#   weight = 4
 
 [params]
 mainSections = ["physicsblog", "posts"]
+# Fallback <meta name="description"> for any page without its own.
+description = "Aleksandr Chatrchyan — postdoctoral researcher at CERN, working on the out-of-equilibrium physics of the early universe. Research, music and wildlife photography."
+# Drop the theme's default `bg-near-white` so the dark background in
+# assets/css/custom.css isn't fighting a class on <body>.
+body_classes = "avenir"
+# Header strip colour; the class is defined in assets/css/custom.css.
+background_color_class = "bg-site-header"
 
 [params.ananke.social.follow]
 networks = ["linkedin", "instagram", "github"]

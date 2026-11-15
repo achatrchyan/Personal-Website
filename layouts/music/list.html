@@ -1,9 +1,14 @@
 {{ define "main" }}
 <article class="cf ph3 ph5-l pv4 pv5-l center">
 
+  <!-- Main content -->
+  <div class="mw7 center f5 lh-copy nested-links">
+    {{ .Content }}
+  </div>
+
   <!-- Soundcloud Section -->
-  <div class="mw7 center mb5 pb4 bb b--light-gray">
-    <h2 class="f3 fw7 mb3">🎵 Listen on Soundcloud</h2>
+  <div class="mw7 center mt5 pt4 bt b--light-gray">
+    <h2 class="f3 fw7 mb3 tc">🎵 Listen on Soundcloud</h2>
 
     <!-- Embedded SoundCloud player -->
     <iframe
@@ -22,11 +27,6 @@
         Open on SoundCloud →
       </a>
     </p>
-  </div>
-
-  <!-- Main content -->
-  <div class="mw7 center f5 lh-copy">
-    {{ .Content }}
   </div>
 </article>
 {{ end }}

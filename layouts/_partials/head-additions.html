@@ -1,0 +1,9 @@
+{{- /* Loads the site's dark theme. Deliberately NOT using the theme's
+       `custom_css` param: its site-style.html only emits a <link> in the
+       *else* branch, so a stylesheet that resolves successfully from assets/
+       is silently dropped. Doing it here also gets minification and a
+       content hash in the filename for cache-busting. */ -}}
+{{ with resources.Get "css/custom.css" }}
+  {{ $css := . | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+{{ end }}
